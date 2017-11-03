@@ -1,0 +1,264 @@
+body {
+  font-family: sans-serif; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.container {
+  position: relative; }
+
+.circle {
+  transform: rotate(-90deg);
+  margin: 100px 250px;
+  position: absolute; }
+
+.animate--1 {
+  transform: rotate(-30deg);
+  transition-duration: 0.5s; }
+
+.animate--2 {
+  transform: rotate(30deg);
+  transition-duration: 1s; }
+
+.animate--3 {
+  transform: rotate(90deg);
+  transition-duration: 1.5s; }
+
+.animate--4 {
+  transform: rotate(150deg);
+  transition-duration: 2s; }
+
+.animate--5 {
+  transform: rotate(210deg);
+  transition-duration: 2.5s; }
+
+.st0 {
+  fill: #FFFFFF; }
+
+.st1 {
+  fill: #00C1E6; }
+
+.people {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.people li {
+  margin: 70px 215px;
+  width: 470px;
+  height: 470px;
+  transform-origin: 50% 235px;
+  border-radius: 235px;
+  position: absolute; }
+
+.people li:nth-child(1) {
+  transform: rotate(60deg); }
+  .people li:nth-child(1).animate {
+    animation: circle1 0.1s linear; }
+    .people li:nth-child(1).animate .person-container {
+      animation: inner-circle1 0.1s linear; }
+
+.people li:nth-child(2) {
+  transform: rotate(120deg); }
+  .people li:nth-child(2).animate {
+    animation: circle2 0.1s linear; }
+    .people li:nth-child(2).animate .person-container {
+      animation: inner-circle2 0.1s linear; }
+
+.people li:nth-child(3) {
+  transform: rotate(180deg); }
+  .people li:nth-child(3).animate {
+    animation: circle3 0.1s linear; }
+    .people li:nth-child(3).animate .person-container {
+      animation: inner-circle3 0.1s linear; }
+
+.people li:nth-child(4) {
+  transform: rotate(240deg); }
+  .people li:nth-child(4).animate {
+    animation: circle4 0.1s linear; }
+    .people li:nth-child(4).animate .person-container {
+      animation: inner-circle4 0.1s linear; }
+
+.people li:nth-child(5) {
+  transform: rotate(300deg); }
+  .people li:nth-child(5).animate {
+    animation: circle5 0.1s linear; }
+    .people li:nth-child(5).animate .person-container {
+      animation: inner-circle5 0.1s linear; }
+
+.people li:nth-child(6) {
+  transform: rotate(360deg); }
+  .people li:nth-child(6).animate {
+    animation: circle6 0.1s linear; }
+    .people li:nth-child(6).animate .person-container {
+      animation: inner-circle6 0.1s linear; }
+
+.person {
+  display: inline-block;
+  text-align: left;
+  cursor: pointer; }
+
+.person__image {
+  display: none; }
+  .people li:nth-child(2) .person__image {
+    display: block;
+    position: absolute;
+    left: -415px;
+    top: -20px;
+    border-radius: 144px; }
+
+.person__name {
+  color: #004f6f;
+  display: block;
+  font-size: 1.1em; }
+  .people li:nth-child(2) .person__name {
+    color: #fff;
+    display: inline-block;
+    font-size: 1.4em; }
+
+.person__title {
+  color: #00c1e6;
+  display: block;
+  font-size: 1.1em; }
+  .people li:nth-child(2) .person__title {
+    color: #fff;
+    display: inline-block;
+    font-size: 1.4em; }
+    .people li:nth-child(2) .person__title:before {
+      content: '|';
+      margin-right: 1em;
+      margin-left: 1em; }
+
+.person__bio {
+  display: none;
+  line-height: 1.5em; }
+  .people li:nth-child(2) .person__bio {
+    color: #fff;
+    display: block; }
+
+.person-container {
+  position: absolute;
+  display: inline-block; }
+  .people li:nth-child(1) .person-container {
+    transform: rotate(-60deg); }
+  .people li:nth-child(2) .person-container {
+    transform: rotate(-120deg); }
+  .people li:nth-child(3) .person-container {
+    transform: rotate(-180deg); }
+  .people li:nth-child(4) .person-container {
+    transform: rotate(-240deg); }
+  .people li:nth-child(5) .person-container {
+    transform: rotate(-300deg); }
+  .people li:nth-child(6) .person-container {
+    transform: rotate(-360deg); }
+
+.bubble {
+  position: absolute;
+  background-color: #00c1e6;
+  color: #fff;
+  width: 600px;
+  height: 300px;
+  left: 685px;
+  top: 153px; }
+  .bubble:before {
+    content: '\00A0';
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-right-color: #00c1e6;
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    margin-top: -20px; }
+
+.people li:nth-child(2) {
+  transform: rotate(0);
+  left: 505px;
+  top: 110px;
+  animation: fadeIn 0.1s linear; }
+  .people li:nth-child(2) .person {
+    cursor: default; }
+  .people li:nth-child(2).animate {
+    opacity: 0; }
+
+.people li:nth-child(2) .person-container {
+  width: 550px;
+  transform: rotate(0); }
+
+@keyframes circle6 {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(60deg); } }
+
+@keyframes circle1 {
+  0% {
+    transform: rotate(60deg); }
+  100% {
+    transform: rotate(120deg); } }
+
+@keyframes circle2 {
+  0% {
+    transform: rotate(120deg); }
+  100% {
+    transform: rotate(180deg); } }
+
+@keyframes circle3 {
+  0% {
+    transform: rotate(180deg); }
+  100% {
+    transform: rotate(240deg); } }
+
+@keyframes circle4 {
+  0% {
+    transform: rotate(240deg); }
+  100% {
+    transform: rotate(300deg); } }
+
+@keyframes circle5 {
+  0% {
+    transform: rotate(300deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes inner-circle6 {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(-60deg); } }
+
+@keyframes inner-circle1 {
+  0% {
+    transform: rotate(-60deg); }
+  100% {
+    transform: rotate(-120deg); } }
+
+@keyframes inner-circle2 {
+  0% {
+    transform: rotate(-120deg); }
+  100% {
+    transform: rotate(-180deg); } }
+
+@keyframes inner-circle3 {
+  0% {
+    transform: rotate(-180deg); }
+  100% {
+    transform: rotate(-240deg); } }
+
+@keyframes inner-circle4 {
+  0% {
+    transform: rotate(-240deg); }
+  100% {
+    transform: rotate(-300deg); } }
+
+@keyframes inner-circle5 {
+  0% {
+    transform: rotate(-300deg); }
+  100% {
+    transform: rotate(-360deg); } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
