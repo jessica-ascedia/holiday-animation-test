@@ -4,17 +4,21 @@ var $peopleContainer = $('.people'),
 /* When a name gets clicked, we're going to keep moving names one position down the list until the clicked name is in the active position */
 $people.find('.person-container').click(function() {
   var $selected = $(this).parent('li'),
+  //where the clicked person is right now
   //less confusing since nth-child is not zero indexed
     selectedPos = $selected.index() + 1;
-  
+  //how many spaces the clicked person has to move to be selected
   var movement = reOrderPeople($selected, selectedPos);
+  //how long it will take the circle to animate to the selected position
   var totalDelay = 501 * movement;
   //var movement = 1;
   //console.log("movement " + movement);
   console.log("total Delay " + totalDelay);
   
+  //start animating the circle
   $circle.addClass("animate--" + movement);
   
+  //reset the circle when it's done animating
   function setCircle() {
       innerTimeout = window.setTimeout(resetCircle, totalDelay);
     }
