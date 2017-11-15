@@ -23,20 +23,23 @@ body {
   width: 300px;
   position: absolute;
   bottom: 60px;
-  right: -300px; }
+  right: -300px;
+  cursor: pointer; }
 
 #house {
   width: 700px;
   position: absolute;
   bottom: 60px;
   left: -700px;
-  z-index: 0; }
+  z-index: 0;
+  cursor: pointer; }
 
 #group {
   width: 400px;
   position: absolute;
   bottom: 150px;
-  left: -400px; }
+  left: -400px;
+  cursor: pointer; }
 
 #santa {
   width: 432px;

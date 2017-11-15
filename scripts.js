@@ -95,7 +95,6 @@ window.onload = function() {
 		opacity: 0
 	}).set(figure, {className: '+=behind'}); //don't want figure blocking house
 	house.addEventListener('click', function() {
-		console.log(inHouse);
 
 		if (inHouse === false) {
 			enterHouse.play();
