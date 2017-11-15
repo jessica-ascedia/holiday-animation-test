@@ -1,9 +1,24 @@
+html {
+	height: 100%;
+}
 body {
   font-family: sans-serif;
-  background-color: #d3ecfd;
+  background: -webkit-linear-gradient(top, #a1dbff 0%,#cbebff 53%,#f0f9ff 100%);
+  background: linear-gradient(to bottom, #a1dbff 0%,#cbebff 53%,#f0f9ff 100%);
+  margin: 0;
+  height: 100%;
 }
 *, *:before, *:after {
   box-sizing: border-box;
+}
+
+.snowbank {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	z-index: -2;
+	height: 200px;
+	background-color: #fff;
 }
 
 #figure {
@@ -19,6 +34,15 @@ body {
 	bottom: 60px;
 	left: -700px;
 	z-index: -1;
+}
+
+.snowflake {
+	position: absolute;
+	margin-top: -80px;
+}
+
+.behind {
+	z-index: -3;
 }
 
 .wiggle {
