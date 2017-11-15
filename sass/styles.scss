@@ -33,7 +33,21 @@ body {
 	position: absolute;
 	bottom: 60px;
 	left: -700px;
-	z-index: -1;
+	z-index: 0;
+}
+
+#group {
+	width: 400px;
+	position: absolute;
+	bottom: 150px;
+	left: -400px;
+}
+
+#santa {
+	width: 432px;
+	position: absolute;
+	margin-left: -432px;
+	top: 100px;
 }
 
 .snowflake {

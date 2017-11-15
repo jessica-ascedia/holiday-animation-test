@@ -1,6 +1,8 @@
 window.onload = function() {
 	var figure = document.getElementById('figure');
 	var house = document.getElementById('house');
+	var group = document.getElementById('group');
+	var flying = document.getElementById('santa');
 	var body = document.getElementsByTagName('body')[0];
 	
 	//generate some snowflakes
@@ -53,15 +55,33 @@ window.onload = function() {
 		right: "50%"
 	}).to(house, 1, {
 		left: "40%"
-	}, '-=0.5');
+	}, '-=0.5').to(group,1, {
+		left: "10%"
+	});
 	
-	//wiggling
+	//wiggling gingerbread man
 	
 	figure.addEventListener('click', function() {
 		var movement = new TimelineLite();
 		movement.set(figure, {className: '+=wiggle'})
 		.set(figure, {className: '-=wiggle'}, '+=1');
 	});
+	
+	//snowmen
+	
+	var movement = new TimelineLite({
+		paused: true
+	});
+	movement.to(flying, 1, {
+		right: 0,
+		opacity: 0
+	});
+	
+	group.addEventListener('click', function() {
+		movement.play(0);
+	});
+	
+	
 	
 	//moving in and out of the house
 	
