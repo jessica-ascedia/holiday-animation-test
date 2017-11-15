@@ -1,85 +1,123 @@
-var $peopleContainer = $('.people'),
-  $people = $peopleContainer.find('li'),
-  $circle = $('.circle');
-/* When a name gets clicked, we're going to keep moving names one position down the list until the clicked name is in the active position */
-$people.find('.person-container').click(function() {
-  var $selected = $(this).parent('li'),
-  //where the clicked person is right now
-  //less confusing since nth-child is not zero indexed
-    selectedPos = $selected.index() + 1;
-  //how many spaces the clicked person has to move to be selected
-  var movement = reOrderPeople($selected, selectedPos);
-  //how long it will take the circle to animate to the selected position
-  var totalDelay = 501 * movement;
-  //var movement = 1;
-  //console.log("movement " + movement);
-  console.log("total Delay " + totalDelay);
-  
-  //start animating the circle
-  $circle.addClass("animate--" + movement);
-  
-  //reset the circle when it's done animating
-  function setCircle() {
-      innerTimeout = window.setTimeout(resetCircle, totalDelay);
-    }
-  
-  function resetCircle() {
-      $circle.removeClass("animate--" + movement);
-    }
-  
-  for (i = 0; i < movement; i++) {
-    var delay = 200 * (i + 1);
-    //console.log("delay " + delay);
-    var innerDelay = delay + 100;
-      //console.log("innerDelay" + innerDelay);
-    var timeout;
-    var innerTimeout;
-    //console.log("looping");
-    
+window.onload = function() {
+	var figure = document.getElementById('figure');
+	var house = document.getElementById('house');
+	var group = document.getElementById('group');
+	var flying = document.getElementById('santa');
+	var body = document.getElementsByTagName('body')[0];
+	
+	//generate some snowflakes
+	
+	function createSnowflakes() {
+		
+		var snowflakeCount = Math.floor(Math.random() * (10 - 4) + 4);
+		
+		for (i=0; i < snowflakeCount; i++) {
+			body.insertAdjacentHTML('beforeend', '<img src="snow.png" class="snowflake" />');
+		}
+		
+		//animate the snowflakes
+		
+		var snowflakes = document.getElementsByClassName('snowflake');
+		
+		for (i=0; i < snowflakes.length; i++) {
+			var thisSnowflake = snowflakes[i];
+			var thisSnowflakeMovement = new TimelineLite();
+			var thisSnowflakeOffset = Math.floor(Math.random() * (6 - 1) + 1) * 10 +i + "%";
+			var thisSnowflakeDelay = Math.random() * (4 - 1) + 1;
+			var position = Math.floor(Math.random() * 2);
+			thisSnowflake.style.left = thisSnowflakeOffset;
+			//some snowflakes go in front of the house, others behind
+			if (position === 0) {
+				thisSnowflakeMovement.set(thisSnowflake, {className: '+=behind'})
+			}
+			//move the snowflake
+			thisSnowflakeMovement.to(thisSnowflake, 3, {
+				bottom: "80px",
+				marginLeft: "30%",
+				opacity: '.3',
+				delay: thisSnowflakeDelay,
+				onComplete: removeSnowflake,
+				onCompleteParams: [thisSnowflake]
+			});
+			
+		}
+	
+	}
+	
+	
+	
+	//entering the scene
+	
 
-    function addAnimate() {
-      timeout = window.setTimeout(startAnimate, delay);
-    }
-    
-    function removeAnimate() {
-      innerTimeout = window.setTimeout(doAnimate, innerDelay);
-    }
+	var timeline = new TimelineLite();
 
-    function startAnimate() {
-      //console.log("adding animate");
-      $people.addClass('animate');
-    }
-    
-    function doAnimate() {
-      //console.log("removing animate");
-      $people.removeClass('animate');
-        $people.filter(':last-child').prependTo($peopleContainer);
-        
-      }
-    
-    addAnimate();
-    removeAnimate();
+	timeline.to(figure, 1, {
+		right: "50%"
+	}).to(house, 1, {
+		left: "40%"
+	}, '-=0.5').to(group,1, {
+		left: "10%"
+	});
+	
+	//wiggling gingerbread man
+	
+	figure.addEventListener('click', function() {
+		var movement = new TimelineLite();
+		movement.set(figure, {className: '+=wiggle'})
+		.set(figure, {className: '-=wiggle'}, '+=1');
+	});
+	
+	//snowmen
+	
+	var movement = new TimelineLite({
+		paused: true
+	});
+	movement.to(flying, 1, {
+		right: 0,
+		opacity: 0
+	});
+	
+	group.addEventListener('click', function() {
+		movement.play(0);
+	});
+	
+	
+	
+	//moving in and out of the house
+	
+	var inHouse = false;
+	var enterHouse = new TimelineLite({
+		paused: true
+	});
+	enterHouse.to(figure, 1, {
+		marginRight: "-300"
+	}).to(figure, 1, {
+		opacity: 0
+	}).set(figure, {className: '+=behind'}); //don't want figure blocking house
+	house.addEventListener('click', function() {
+		console.log(inHouse);
 
-  }
-  
-  setCircle();
-  
-});
-
-function reOrderPeople(thisPerson, thisPosition) {
-  var $selected = thisPerson,
-    selectedPos = thisPosition;
-  var movement = 0;
-  
-  while (selectedPos !== 2) {
-    if (selectedPos === 6) {
-      selectedPos = 1;
-    } else {
-      selectedPos++;
-    }
-    
-    movement++
-    
-  }
-  return movement;
+		if (inHouse === false) {
+			enterHouse.play();
+			inHouse = true;
+		} else {
+			enterHouse.reverse();
+			inHouse = false;
+		}
+	});
+	
+	function removeSnowflake(thisSnowflake) {
+		var body = document.getElementsByTagName('body')[0];
+		var snowflakeCount = document.getElementsByClassName('snowflake').length;
+		body.removeChild(thisSnowflake);
+		if (snowflakeCount === 1) {
+			//snowflakes forever!
+			createSnowflakes();
+		}
+	}
+	
+	createSnowflakes();
+	//removeSnowflakes();
+	
 }
+
