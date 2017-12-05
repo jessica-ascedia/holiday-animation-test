@@ -1,15 +1,19 @@
 html {
-  height: 100%; }
+  min-height: 100%; }
 
 body {
   font-family: sans-serif;
   background: -webkit-linear-gradient(top, #a1dbff 0%, #cbebff 53%, #f0f9ff 100%);
   background: linear-gradient(to bottom, #a1dbff 0%, #cbebff 53%, #f0f9ff 100%);
+  background-position: fixed;
   margin: 0;
-  height: 100%; }
+  min-height: 100%; }
 
 *, *:before, *:after {
   box-sizing: border-box; }
+
+p {
+  padding: 25px; }
 
 .snowbank {
   width: 100%;
@@ -39,7 +43,8 @@ body {
   position: absolute;
   bottom: 150px;
   left: -400px;
-  cursor: pointer; }
+  cursor: pointer;
+  z-index: -1; }
 
 #santa {
   width: 432px;
